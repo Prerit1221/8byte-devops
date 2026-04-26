@@ -1,17 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
-from app.database import engine, Base
 from app.routers import items, health
-
-# Create tables
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="8Byte DevOps Demo API",
     description="A simple CRUD API built for DevOps assignment",
     version="1.0.0"
 )
+
+@app.on_event("startup")
+def startup():
+    from app.database import engine, Base
+    Base.metadata.create_all(bind=engine)
+
 
 app.add_middleware(
     CORSMiddleware,
