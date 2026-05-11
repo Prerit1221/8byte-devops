@@ -1,5 +1,8 @@
 Hello Reader,
 
+It is a simple product catalog where you can create, read, update and delete items. Each item has a title, description and active status stored in a PostgreSQL database.
+
+
 This is the application, which can be accisible as mentioned below:
 
 http://ALB-DNS-NAME   -> Expected Output -> {"message": "8Byte DevOps Demo API is running "}
